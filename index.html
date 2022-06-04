@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>FAQ Accordion Card</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Kumbh Sans', sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        overflow-y: hidden;
+        background-color: hsl(273, 75%, 66%);
+        padding-top: calc((100vh - 400px) / 2);
+      }
+
+      main {
+        width: 750px;
+        background-color: white;
+        border-radius: 20px;
+        display: flex;
+        height: 400px;
+        margin: auto;
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+      }
+
+      .attribution a {
+        color: hsl(14, 88%, 65%);
+        font-weight: bold;
+      }
+
+      section {
+        width: 50%;
+      }
+
+      #faq-box {
+        padding: 35px 0px;
+      }
+
+      h1 {
+        color: hsl(238, 29%, 16%);
+        margin-bottom: 27px;
+        font-size: 36px;
+      }
+
+      .box-cards {
+        padding-right: 15%;
+      }
+
+      .card {
+        border-bottom: hsl(240, 5%, 91%) 1px solid;
+      }
+
+      .content-card {
+        height: 0px;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+
+      input {
+        display: none;
+      }
+
+      [id^='card']:checked ~ .content-card {
+        height: 36px;
+
+        padding-bottom: 13px;
+      }
+
+      [id^='card']:checked ~ label {
+        font-weight: 700;
+      }
+
+      [id^='card']:checked ~ label img {
+        transform: rotate(180deg);
+        top: 35%;
+      }
+
+      label {
+        font-size: 14px;
+        line-height: 40px;
+        color: hsl(237, 12%, 33%);
+        display: block;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+      }
+
+      label:hover {
+        color: hsl(14, 88%, 65%);
+      }
+
+      label img {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+
+      .text {
+        font-size: 12px;
+        color: hsl(240, 6%, 50%);
+      }
+
+      #image-box {
+        position: relative;
+      }
+
+      #image-box .overflow {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      #image-box .bg-pattern {
+        width: 186%;
+        position: absolute;
+        top: -45%;
+        right: 50px;
+      }
+
+      #image-box .woman {
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 50px;
+      }
+
+      #image-box .box {
+        height: 140px;
+        position: absolute;
+        top: 41%;
+        left: -17%;
+        z-index: 10;
+      }
+
+      .woman-mobile {
+        display: none;
+      }
+      .bg-pattern-mobile {
+        display: none;
+      }
+
+      @media (max-width: 1000px) {
+        .attribution {
+          position: fixed;
+          background-color: hsl(240, 73%, 65%);
+        }
+
+        body {
+          height: 100vh;
+          padding-top: 220px;
+        }
+
+        main {
+          width: 80%;
+          flex-direction: column;
+          height: auto;
+          margin-bottom: 60px;
+        }
+
+        section {
+          width: 100%;
+        }
+
+        h1 {
+          text-align: center;
+        }
+
+        .box-cards {
+          padding-right: 20px;
+          padding-left: 20px;
+          padding-bottom: 10px;
+        }
+
+        #image-box {
+          height: 170px;
+          position: relative;
+          overflow: visible;
+        }
+
+        #image-box .overflow {
+          position: absolute;
+          overflow: visible;
+        }
+
+        body {
+          overflow-y: scroll;
+          height: auto;
+        }
+
+        .box {
+          display: none;
+        }
+
+        .woman {
+          display: none;
+        }
+        .bg-pattern {
+          display: none;
+        }
+        .woman-mobile {
+          width: 400px;
+          display: block;
+          position: absolute;
+          z-index: 100;
+          top: -17%;
+          transform: translateY(-50%);
+          left: calc((100% - 400px) / 2);
+        }
+        .bg-pattern-mobile {
+          display: block;
+          width: 400px;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 750px) {
+        body {
+          padding-top: 180px;
+        }
+
+        #image-box {
+          height: 140px;
+        }
+
+        .woman-mobile {
+          width: 300px;
+          left: calc((100% - 300px) / 2);
+        }
+
+        .bg-pattern-mobile {
+          width: 300px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        h1 {
+          font-size: 27px;
+          margin-bottom: 15px;
+        }
+
+        body {
+          padding-top: 130px;
+        }
+
+        #image-box {
+          height: 100px;
+        }
+
+        .woman-mobile {
+          width: 240px;
+          left: calc((100% - 240px) / 2);
+        }
+
+        .bg-pattern-mobile {
+          width: 240px;
+        }
+
+        main {
+          width: 90%;
+        }
+
+        label {
+          font-size: 10px;
+          padding-right: 12px;
+          padding-top: 7px;
+          padding-bottom: 7px;
+          line-height: 15px;
+        }
+
+        .text {
+          font-size: 8px;
+        }
+
+        [id^='card']:checked ~ .content-card {
+          height: 20px;
+
+          padding-bottom: 13px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .woman-mobile {
+          width: 180px;
+          left: calc((100% - 180px) / 2);
+        }
+
+        .bg-pattern-mobile {
+          width: 180px;
+        }
+
+        #image-box {
+          height: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section id="image-box">
+        <div class="overflow">
+          <img class="bg-pattern" src="images/bg-pattern-desktop.svg" alt="" />
+          <img
+            class="woman"
+            src="images/illustration-woman-online-desktop.svg"
+            alt=""
+          />
+          <img
+            class="bg-pattern-mobile"
+            src="images/bg-pattern-mobile.svg"
+            alt=""
+          />
+          <img
+            class="woman-mobile"
+            src="images/illustration-woman-online-mobile.svg"
+            alt=""
+          />
+        </div>
+        <img class="box" src="images/illustration-box-desktop.svg" alt="" />
+      </section>
+      <section id="faq-box">
+        <header id="faq-header">
+          <h1>FAQ</h1>
+        </header>
+        <div class="box-cards">
+          <div class="card">
+            <input type="radio" name="card" id="card-1" />
+            <label for="card-1"
+              >How many team members can I invite?
+              <img src="images/icon-arrow-down.svg" alt=""
+            /></label>
+
+            <div class="content-card">
+              <p class="text">
+                You can invite up to 2 additional users on the Free plan. There
+                is no limit on team members for the Premium plan.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <input type="radio" name="card" id="card-2" />
+            <label for="card-2"
+              >What is the maximum file upload size?
+              <img src="images/icon-arrow-down.svg" alt=""
+            /></label>
+            <div class="content-card">
+              <p class="text">
+                No more than 2GB. All files in your account must fit your
+                allotted storage space.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <input type="radio" name="card" id="card-3" />
+            <label for="card-3"
+              >How do I reset my password?
+              <img src="images/icon-arrow-down.svg" alt=""
+            /></label>
+            <div class="content-card">
+              <p class="text">
+                Click “Forgot password” from the login page or “Change password”
+                from your profile page. A reset link will be emailed to you.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <input type="radio" name="card" id="card-4" />
+            <label for="card-4"
+              >Can I cancel my subscription?
+              <img src="images/icon-arrow-down.svg" alt=""
+            /></label>
+            <div class="content-card">
+              <p class="text">
+                Yes! Send us a message and we’ll process your request no
+                questions asked.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <input type="radio" name="card" id="card-5" />
+            <label for="card-5"
+              >Do you provide additional support?
+              <img src="images/icon-arrow-down.svg" alt=""
+            /></label>
+            <div class="content-card">
+              <p class="text">
+                Chat and email support is available 24/7. Phone lines are open
+                during normal business hours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. <br />
+      Coded by
+      <a href="https://erick-rosdachimo.github.io/portifolio/" target="_blank"
+        >Erick Rosdachimo</a
+      >.
+    </div>
+  </body>
+</html>
